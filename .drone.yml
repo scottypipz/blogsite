@@ -4,13 +4,14 @@ type: docker
 name: backend
 steps:
   - name: test
-  image: node:latest
-  commands:
-    - npm install
-    - npm run test
-  when:
-    branch:
-      - master
-    event:
-      - push
-      - pull-request
+    image: node:latest
+    commands:
+      - npm install
+      - npm run test
+    when:
+      branch:
+        - master
+      event:
+        - push
+        - pull-request
+---
