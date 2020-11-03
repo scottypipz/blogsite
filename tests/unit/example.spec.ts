@@ -8,6 +8,6 @@ describe('HelloWorld.vue', () => {
       props: { msg },
     });
     expect(wrapper.text()).toMatch(msg);
-    expect(false).toMatch(true);
+    expect(false).toEqual(true);
   });
 });
