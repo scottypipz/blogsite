@@ -1,14 +1,16 @@
+---
 kind: pipeline
-name: example-pipeline
+type: docker
+name: backend
 steps:
-  - name: Run Docker
+  - name: test
   image: node:latest
   commands:
     - npm install
     - npm run test
   when:
-  branch:
-    - master
-  event:
-    - push
-    - pull-request
+    branch:
+      - master
+    event:
+      - push
+      - pull-request
