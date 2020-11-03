@@ -1,14 +1,14 @@
 kind: pipeline
 name: example-pipeline
 steps:
- - name: Run Docker
- image: node:latest
- commands:
- - npm install
- - npm run test
- when:
- branch:
- - master
- event:
- - push
- - pull-request
+  - name: Run Docker
+  image: node:latest
+  commands:
+    - npm install
+    - npm run test
+  when:
+  branch:
+    - master
+  event:
+    - push
+    - pull-request
