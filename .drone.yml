@@ -1,45 +1,5 @@
-kind: pipeline
-name: test
-
-server:
-  host:
-    from_secret: SSH_HOST
-  user:
-    from_secret: SSH_USER
-  password:
-    from_secret: SSH_PASSWORD
-
-steps:
-- name: test
-  image: node:latest
-  commands:
-  - echo test
-  when:
-    branch:
-    - main
-    event:
-    - push
-    - pull-request
-
-# ---
 # kind: pipeline
-# type: ssh
-# name: deploy-local
-
-# clone:
-#   disable: true
-
-# trigger:
-#   branch:
-#   - main
-#   event:
-#   - push
-# depends_on:
-#   - test
-
-# platform:
-#   os: linux
-#   arch: amd64
+# name: test
 
 # server:
 #   host:
@@ -50,12 +10,52 @@ steps:
 #     from_secret: SSH_PASSWORD
 
 # steps:
-# - name: deploy
-#   environment:
-#     WWW_ROOT:
-#       from_secret: WWW_ROOT
+# - name: test
+#   image: node:latest
 #   commands:
-#   - cd ~/Development/personal/drone
-#   - git pull
+#   - echo test
+#   when:
+#     branch:
+#     - main
+#     event:
+#     - push
+#     - pull-request
 
-# ...
+# ---
+kind: pipeline
+type: ssh
+name: deploy-local
+
+clone:
+  disable: true
+
+trigger:
+  branch:
+  - main
+  event:
+  - push
+depends_on:
+  - test
+
+platform:
+  os: linux
+  arch: amd64
+
+server:
+  host:
+    from_secret: SSH_HOST
+  user:
+    from_secret: SSH_USER
+  password:
+    from_secret: SSH_PASSWORD
+
+steps:
+- name: deploy
+  environment:
+    WWW_ROOT:
+      from_secret: WWW_ROOT
+  commands:
+  - cd ~/Development/personal/drone
+  - git pull
+
+...
