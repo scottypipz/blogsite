@@ -1,5 +1,7 @@
+---
+
 kind: pipeline
-name: backend
+name: test
 
 steps:
 - name: test
@@ -14,3 +16,32 @@ steps:
     event:
     - push
     - pull-request
+
+volumes:
+- name: cache
+  host:
+    path: /tmp/drone/cache/vendor
+  
+---
+
+# kind: pipeline
+# type: exec
+# name: staging
+
+# trigger:
+#   branch:
+#   - main
+#   event:
+#   - push
+# depends_on:
+# - test
+
+# platform:
+#   os: linux
+#   arch: amd64
+
+# steps:
+# - name: publish
+#   commands:
+#   - cd ~/Development/personal/blogsite
+#   - 
