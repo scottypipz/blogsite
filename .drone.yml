@@ -8,9 +8,9 @@ steps:
   - echo test
   - npm install
   - npm test:unit
-  when:
-    branch:
-      - master
-    event:
-      - push
-      - pull-request
+  # when:
+  #   branch:
+  #     - master
+  #   event:
+  #     - push
+  #     - pull-request
