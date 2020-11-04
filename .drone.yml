@@ -6,6 +6,7 @@ steps:
   image: node:latest
   commands:
   - echo test
+  - npm install
   when:
     branch:
       - master
