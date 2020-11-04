@@ -34,8 +34,8 @@ trigger:
   - main
   event:
   - push
-depends_on:
-  - test
+# depends_on:
+#   - test
 
 platform:
   os: linux
