@@ -17,7 +17,10 @@ steps:
 
 kind: pipeline
 type: exec
-name: staging
+name: deploy-local
+
+clone:
+  disable: true
 
 trigger:
   branch:
@@ -32,7 +35,7 @@ platform:
   arch: amd64
 
 steps:
-- name: publish
+- name: deploy
   environment:
     WWW_ROOT:
       from_secret: WWW_ROOT
