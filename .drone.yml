@@ -7,7 +7,7 @@ steps:
   commands:
   - echo test
   - npm install
-  - npm test
+  - npm test:unit
   when:
     branch:
       - master
