@@ -14,7 +14,7 @@
 #     event:
 #     - push
 #     - pull-request
----
+# ---
 
 kind: pipeline
 type: exec
@@ -42,4 +42,4 @@ steps:
   - cd $${WWW_ROOT}
   - git pull
 
-...
+# ...
