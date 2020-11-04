@@ -17,7 +17,6 @@ steps:
 ---
 
 kind: pipeline
-type: exec
 name: deploy-local
 
 # clone:
