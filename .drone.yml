@@ -7,10 +7,10 @@ steps:
   commands:
   - echo test
   - npm install
-  - npm test:unit
-  # when:
-  #   branch:
-  #     - master
-  #   event:
-  #     - push
-  #     - pull-request
+  - npm run test:unit
+  when:
+    branch:
+    - master
+    event:
+    - push
+    - pull-request
