@@ -5,8 +5,7 @@ steps:
 - name: test
   image: node:latest
   commands:
-  - npm install
-  - npm run test:unit
+  - echo test
   when:
     branch:
       - master
