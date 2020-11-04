@@ -10,7 +10,7 @@ steps:
   - npm run test:unit
   when:
     branch:
-    - master
+    - main
     # event:
     # - push
     # - pull-request
