@@ -1,5 +1,3 @@
----
-
 kind: pipeline
 name: test
 
@@ -14,14 +12,14 @@ steps:
     event:
     - push
     - pull-request
----
 
+---
 kind: pipeline
 type: ssh
 name: deploy-local
 
-# clone:
-#   disable: true
+clone:
+  disable: true
 
 trigger:
   branch:
