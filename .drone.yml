@@ -17,6 +17,7 @@ steps:
 ---
 
 kind: pipeline
+type: ssh
 name: deploy-local
 
 # clone:
@@ -31,6 +32,12 @@ trigger:
 platform:
   os: linux
   arch: amd64
+
+server:
+  host:
+    from_secret: SSH_HOST
+  user:
+    from_secret: SSH_USER
 
 steps:
 - name: deploy
