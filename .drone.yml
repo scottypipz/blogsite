@@ -11,6 +11,6 @@ steps:
   when:
     branch:
     - main
-    # event:
-    # - push
-    # - pull-request
+    event:
+    - push
+    - pull-request
