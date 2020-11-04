@@ -22,8 +22,6 @@ volumes:
   host:
     path: /tmp/drone/cache/vendor
   
----
-
 # kind: pipeline
 # type: exec
 # name: staging
