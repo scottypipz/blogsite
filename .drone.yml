@@ -1,27 +1,20 @@
-# kind: pipeline
-# name: test
+kind: pipeline
+name: test
 
-# server:
-#   host:
-#     from_secret: SSH_HOST
-#   user:
-#     from_secret: SSH_USER
-#   password:
-#     from_secret: SSH_PASSWORD
+steps:
+- name: test
+  image: node:latest
+  commands:
+  - npm install
+  - npm run test:unit
+  when:
+    branch:
+    - main
+    event:
+    - push
+    - pull-request
 
-# steps:
-# - name: test
-#   image: node:latest
-#   commands:
-#   - echo test
-#   when:
-#     branch:
-#     - main
-#     event:
-#     - push
-#     - pull-request
-
-# ---
+---
 kind: pipeline
 type: ssh
 name: deploy-local
@@ -34,8 +27,8 @@ trigger:
   - main
   event:
   - push
-# depends_on:
-#   - test
+depends_on:
+  - test
 
 platform:
   os: linux
