@@ -6,8 +6,6 @@ steps:
   image: node:latest
   commands:
   - echo test
-  - npm install
-  - npm run test:unit
   when:
     branch:
     - main
@@ -15,24 +13,29 @@ steps:
     - push
     - pull-request
 
-# kind: pipeline
-# type: exec
-# name: staging
+---
 
-# trigger:
-#   branch:
-#   - main
-#   event:
-#   - push
-# depends_on:
-# - test
+kind: pipeline
+type: exec
+name: staging
 
-# platform:
-#   os: linux
-#   arch: amd64
+trigger:
+  branch:
+  - main
+  event:
+  - push
+depends_on:
+- test
 
-# steps:
-# - name: publish
-#   commands:
-#   - cd ~/Development/personal/blogsite
-#   - 
+platform:
+  os: linux
+  arch: amd64
+
+steps:
+- name: publish
+  environment:
+    WWW_ROOT:
+      from_secret: WWW_ROOT
+  commands:
+  - cd $${WWW_ROOT}
+  - git pull
