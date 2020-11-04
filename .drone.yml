@@ -14,9 +14,6 @@ steps:
     event:
     - push
     - pull-request
-
-...
-
 ---
 
 kind: pipeline
