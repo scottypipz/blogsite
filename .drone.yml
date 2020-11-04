@@ -1,20 +1,20 @@
 # ---
 
-# kind: pipeline
-# name: test
+kind: pipeline
+name: test
 
-# steps:
-# - name: test
-#   image: node:latest
-#   commands:
-#   - echo test
-#   when:
-#     branch:
-#     - main
-#     event:
-#     - push
-#     - pull-request
-# ---
+steps:
+- name: test
+  image: node:latest
+  commands:
+  - echo test
+  when:
+    branch:
+    - main
+    event:
+    - push
+    - pull-request
+---
 
 kind: pipeline
 type: exec
