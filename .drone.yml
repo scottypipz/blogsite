@@ -20,8 +20,8 @@ kind: pipeline
 type: exec
 name: deploy-local
 
-clone:
-  disable: true
+# clone:
+#   disable: true
 
 trigger:
   branch:
