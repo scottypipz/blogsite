@@ -55,7 +55,7 @@ steps:
     WWW_ROOT:
       from_secret: WWW_ROOT
   commands:
-  - cd ~/Development/personal/drone
+  - cd /home/chefpipz/Development/personal/blogsite
   - git pull
 
 ...
