@@ -17,11 +17,6 @@ steps:
     - push
     - pull-request
 
-volumes:
-- name: cache
-  host:
-    path: /tmp/drone/cache/vendor
-  
 # kind: pipeline
 # type: exec
 # name: staging
