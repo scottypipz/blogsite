@@ -1,10 +1,19 @@
 <template>
-  <div id="nav">
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
-  </div>
+  <navbar/>
   <router-view/>
 </template>
+
+<script lang="ts">
+import { defineComponent } from 'vue';
+import Navbar from '@/components/fragments/Navbar.vue';
+
+export default defineComponent({
+  name: 'App',
+  components: {
+    Navbar,
+  },
+});
+</script>
 
 <style lang="scss">
 #app {
@@ -15,16 +24,13 @@
   color: #2c3e50;
 }
 
-#nav {
-  padding: 30px;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
-    }
-  }
+a, u {
+  text-decoration: none;
 }
 </style>
