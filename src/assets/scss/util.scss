@@ -1,0 +1,17 @@
+.spacer {
+  margin: 1rem 0;
+  &.spacer-lg {
+    margin: 1.5rem 0;
+  }
+  &.spacer-sm {
+    margin: 0.5rem 0;
+  }
+}
+
+.text-right {
+  text-align: right;
+}
+
+.color-teal {
+  color: $teal;
+}

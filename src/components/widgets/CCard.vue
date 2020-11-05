@@ -14,12 +14,15 @@
 
 <style lang="scss" scoped>
 .c-card {
+  padding: 2em;
   background-color: $google-light-light;
-  border-radius: 5px;
-  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+  border-radius: 0.3em;
+  box-shadow: 10px 10px 30px rgba(0, 0, 0, 0.1);
+  font-size: 1em;
+}
 
-  .c-body {
-    padding: 1rem;
-  }
+.c-header {
+  font-size: 1.5rem;
+  font-weight: 500;
 }
 </style>

@@ -1,0 +1,42 @@
+form {
+  input[type="text"],
+  input[type="email"],
+  input[type="password"] {
+    // show success!
+    &:valid {
+      background: url(/img/svg/check.svg);
+      background-size: 20px;
+      background-repeat: no-repeat;
+      background-position: 20px 20px;
+    }
+  }
+  .form-group {
+    margin: 0.5rem 0;
+    position: relative;
+    input, text-area {
+      border: $grey3;
+      border-radius: 1rem;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.10);
+      font-size: 1rem;
+      padding: 0.5rem 1rem;
+      width: 100%;
+    }
+    button[type="submit"] {
+      background-color: $teal;
+      border: none;
+      border-radius: 1rem;
+      box-shadow: 0 2px 3px rgba(0, 0, 0, 0.15);
+      color: $font-white-primary;
+      font-size: 1rem;
+      padding: 0.5rem 1rem;
+      width: 100%;
+    }
+  }
+  label {
+    &.hidden {
+      visibility: hidden;
+      position: absolute;
+    }
+  }
+
+}

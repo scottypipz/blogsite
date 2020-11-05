@@ -1,11 +1,17 @@
 button {
   padding: 0.5rem 1rem;
+  margin: 0 0.25rem;
   outline: none;
   border: 1px solid $font-dark-secondary;
+  border-radius: 3px;
+  box-shadow: 0 1px 10px rgba(0, 0, 0, 0.10);
   cursor: pointer;
 
   &.btn-circle {
-    padding: 1rem;
+    font-size: 1.5rem;
+    width: 4rem;
+    height: 4rem;
+    line-height: 1rem;
     border-radius: 50%;
   }
 
@@ -17,7 +23,25 @@ button {
 
   &.btn-facebook {
     color: $font-white-primary;
-    background-color: $red;
+    background-color: $blue;
+    border: none;
+  }
+
+  &.btn-twitter {
+    color: $font-white-primary;
+    background-color: $teal;
+    border: none;
+  }
+
+  &.btn-teal {
+    color: $font-white-primary;
+    background-color: $teal;
+    border: none;
+  }
+
+  &.btn-sky {
+    color: $font-white-primary;
+    background-color: $sky;
     border: none;
   }
 

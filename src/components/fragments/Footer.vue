@@ -18,7 +18,7 @@
 @import '../../assets/scss/_variables.scss';
 footer {
   padding: 2rem 0;
-  background-color: $google-light-primary;
+  background-color: #77777733;
   .container {
     width: 800px;
     max-width: 100%;
