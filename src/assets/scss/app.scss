@@ -1,0 +1,58 @@
+@import url(https://fonts.googleapis.com/css?family=Nunito);
+
+html, body, #app {
+  min-height: 100% !important;
+  height: 100%;
+}
+
+#app {
+  font-family: 'Roboto', 'Nunito', 'Open Sans', Avenir, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: $font-dark-primary;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+input, button, submit { border:none; } 
+
+main {
+  background-color: $google-light-light;
+  flex: 1;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+a, u {
+  text-decoration: none;
+}
+
+.no-select {
+  -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+     -khtml-user-select: none; /* Konqueror HTML */
+       -moz-user-select: none; /* Old versions of Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome, Edge, Opera and Firefox */
+}
+
+.web-only {
+  display: none;
+}
+
+/** Web */
+/** Web */
+@media screen and (min-width: 1024px) {
+  .web-only {
+    display: block;
+  }
+}
+
+@import './buttons.scss';

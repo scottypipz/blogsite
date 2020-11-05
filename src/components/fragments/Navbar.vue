@@ -4,10 +4,10 @@
       <router-link to="/">Home</router-link>
 
       <!-- ============ Guest Routes ============ -->
-      <router-link to="/writer">Be a Writer</router-link>
+      <router-link :to="{ name: 'WriterRegister' }">Be a Writer</router-link>
 
       <!-- ============ Private Routes ============ -->
-      <router-link to="/profile" class="profile">
+      <router-link to="#" class="profile">
         <div class="name web-only">
           John Doe
         </div>

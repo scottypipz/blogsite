@@ -1,0 +1,27 @@
+button {
+  padding: 0.5rem 1rem;
+  outline: none;
+  border: 1px solid $font-dark-secondary;
+  cursor: pointer;
+
+  &.btn-circle {
+    padding: 1rem;
+    border-radius: 50%;
+  }
+
+  &.btn-google {
+    color: $font-white-primary;
+    background-color: $red;
+    border: none;
+  }
+
+  &.btn-facebook {
+    color: $font-white-primary;
+    background-color: $red;
+    border: none;
+  }
+
+  &.btn-lg {
+    font-size: 1.5rem;
+  }
+}
