@@ -3,6 +3,7 @@
 html, body, #app {
   min-height: 100% !important;
   height: 100%;
+  overflow-x: hidden;
 }
 
 #app {
@@ -19,7 +20,6 @@ html, body, #app {
 input, button, submit { border:none; } 
 
 main {
-  background-color: $google-light-light;
   flex: 1;
 }
 
@@ -56,3 +56,4 @@ a, u {
 }
 
 @import './buttons.scss';
+@import './form.scss';

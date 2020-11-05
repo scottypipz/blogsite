@@ -24,6 +24,8 @@ nav {
   top: 0;
   left: 0;
   width: 100%;
+  z-index: 1000;
+  font-size: 1rem;
 
   .container {
     width: 800px;
@@ -57,7 +59,7 @@ nav {
       width: 2rem;
       height: 2rem;
       border-radius: 50%;
-      background-color: $google-light-secondary;
+      background-color: $google-light-primary;
     }
   }
 }
