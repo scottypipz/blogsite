@@ -1,4 +1,4 @@
-form {
+.form {
   input[type="text"],
   input[type="email"],
   input[type="password"] {
@@ -21,15 +21,25 @@ form {
       padding: 0.5rem 1rem;
       width: 100%;
     }
-    button[type="submit"] {
-      background-color: $teal;
+    button {
       border: none;
       border-radius: 1rem;
       box-shadow: 0 2px 3px rgba(0, 0, 0, 0.15);
-      color: $font-white-primary;
       font-size: 1rem;
       padding: 0.5rem 1rem;
       width: 100%;
+      &[type="submit"] {
+        background-color: $teal;
+        color: $font-white-primary;
+      }
+      &.btn-teal {
+        background-color: $teal;
+        color: $font-white-primary;
+      }
+      &.btn-red {
+        background-color: $red;
+        color: $font-white-primary;
+      }
     }
   }
   label {
@@ -39,4 +49,20 @@ form {
     }
   }
 
+}
+
+/* Change Autocomplete styles in Chrome*/
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:focus,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus {
+  border: none;
+  -webkit-text-fill-color: inherit;
+  -webkit-box-shadow: 0 0 0px 1000px #87ceeb77 inset;
+  transition: background-color 5000s ease-in-out 0s;
 }

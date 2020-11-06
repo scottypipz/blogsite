@@ -3,17 +3,17 @@
     <div class="background">
       <div class="overlay"></div>
     </div>
-    <RegistrationForm/>
+    <AuthForm/>
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import RegistrationForm from '@/components/writers/RegistrationForm.vue';
+import AuthForm from '@/components/writers/AuthForm.vue';
 
 export default defineComponent({
   components: {
-    RegistrationForm,
+    AuthForm,
   },
 });
 </script>

@@ -3,10 +3,11 @@
     <div class="title">What's your story?</div>
 
     <!-- ============ Email and Password ============ -->
-    <form id="writer-register">
+    <div class="form" id="auth">
       <div class="form-group">
         <label for="email" class="hidden">Email:</label>
-        <input type="email"
+        <input v-model="form.email"
+          type="email"
           name="email"
           autocomplete="email"
           required
@@ -16,7 +17,8 @@
 
       <div class="form-group">
         <label for="password" class="hidden">Password:</label>
-        <input pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}"
+        <input v-model="form.password"
+          pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}"
           type="password"
           id="password"
           name="password"
@@ -25,16 +27,16 @@
           placeholder="Password">
       </div>
       <div class="form-group">
-        <button type="submit">
+        <button class="btn-teal" type="button" @click="login">
+          Login
+        </button>
+      </div>
+      <div class="form-group">
+        <button class="btn-red" type="button" @click="register">
           Sign up
         </button>
-        <div class="color-teal text-right spacer spacer-sm">
-          <router-link :to="{ name: 'WriterLogin' }">
-            Already have an account?
-          </router-link>
-        </div>
       </div>
-    </form>
+    </div>
     <!-- ============ EOF Email and Password ============ -->
 
     <!-- ============ Divider ============ -->
@@ -42,7 +44,7 @@
 
     <!-- ============ Social Media ============ -->
     <div class="flex-item">
-      <p>Sign up with your social accounts.</p>
+      <p>Login in with your social accounts.</p>
       <div class="spacer"></div>
       <button class="btn-circle btn-google">
         <i class="fab fa-google"></i>
@@ -59,28 +61,44 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
+import store from '@/store/modules/writer';
+import { defineComponent, reactive } from 'vue';
 
 export default defineComponent({
+  setup() {
+    const form = reactive({
+      email: '',
+      password: '',
+    });
+
+    const login = async () => {
+      try {
+        await store.dispatch('login', form);
+      } catch (e) {
+        // TODO Handle
+      }
+    };
+
+    const register = async () => {
+      try {
+        await store.dispatch('register', form);
+      } catch (e) {
+        // TODO Handle
+      }
+    };
+
+    return {
+      form,
+      login,
+      register,
+    };
+  },
 });
 </script>
 
 <style lang="scss" scoped>
 @import url(https://fonts.googleapis.com/css?family=Cookie);
 @import '@/assets/scss/form.scss';
-
-// .container {
-//   height: 100%;
-//   display: grid;
-//   place-items: center;
-//   grid-template-rows:
-//     0.5fr
-//     0.5fr
-//     1fr
-//     0.1fr
-//     0.7fr
-//     0.5fr;
-// }
 
 .container {
   display: flex;
