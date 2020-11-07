@@ -3,7 +3,7 @@
     <div class="title">What's your story?</div>
 
     <!-- ============ Email and Password ============ -->
-    <div class="form" id="auth">
+    <form class="form" id="auth" @submit.prevent>
       <div class="form-group">
         <label for="email" class="hidden">Email:</label>
         <input v-model="form.email"
@@ -27,16 +27,16 @@
           placeholder="Password">
       </div>
       <div class="form-group">
-        <button class="btn-teal" type="button" @click="login">
+        <CButton class="btn-teal" type="button" @click="login" ref="loginBtn">
           Login
-        </button>
+        </CButton>
       </div>
       <div class="form-group">
-        <button class="btn-red" type="button" @click="register">
+        <button class="btn-red" type="button" @click="register" ref="registerBtn">
           Sign up
         </button>
       </div>
-    </div>
+    </form>
     <!-- ============ EOF Email and Password ============ -->
 
     <!-- ============ Divider ============ -->
@@ -62,34 +62,50 @@
 
 <script lang="ts">
 import store from '@/store/modules/writer';
-import { defineComponent, reactive } from 'vue';
+import { defineComponent, reactive, ref } from 'vue';
+import CButton from '@/components/widgets/CButton.vue';
 
 export default defineComponent({
+  components: {
+    CButton,
+  },
   setup() {
     const form = reactive({
       email: '',
       password: '',
     });
+    const loginBtn = ref();
+    const registerBtn = ref();
 
     const login = async () => {
+      if (loginBtn.value.state.loading) { return; }
+      loginBtn.value.setLoading(true);
+
       try {
         await store.dispatch('login', form);
       } catch (e) {
         // TODO Handle
+        loginBtn.value.setLoading(false);
       }
     };
 
     const register = async () => {
+      if (registerBtn.value.state.loading) { return; }
+      registerBtn.value.setLoading(true);
+
       try {
         await store.dispatch('register', form);
       } catch (e) {
         // TODO Handle
+        registerBtn.value.setLoading(false);
       }
     };
 
     return {
       form,
       login,
+      loginBtn,
+      registerBtn,
       register,
     };
   },

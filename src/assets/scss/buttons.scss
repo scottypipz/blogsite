@@ -7,6 +7,14 @@ button {
   box-shadow: 0 1px 10px rgba(0, 0, 0, 0.10);
   cursor: pointer;
 
+  &:disabled {
+    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #3093c7), color-stop(100%, #1c5a85));
+    background-image: -webkit-linear-gradient(top, #3093c7, #1c5a85);
+    background-image: -moz-linear-gradient(top, #3093c7, #1c5a85);
+    background-image: -ms-linear-gradient(top, #3093c7, #1c5a85);
+    background-image: -o-linear-gradient(top, #3093c7, #1c5a85);
+  }
+
   &.btn-circle {
     font-size: 1.5rem;
     width: 4rem;

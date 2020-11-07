@@ -24,14 +24,11 @@
 
 <script lang="ts">
 import store from '@/store/modules/writer';
-import { computed, defineComponent, watchEffect } from 'vue';
+import { computed, defineComponent } from 'vue';
 
 export default defineComponent({
   setup() {
     const isLoggedIn = computed(() => store.state.isLoggedIn);
-    watchEffect(() => {
-      console.log(store.state.isLoggedIn);
-    });
 
     const logout = () => store.dispatch('logout');
 
