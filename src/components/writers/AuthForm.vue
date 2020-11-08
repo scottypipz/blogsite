@@ -4,38 +4,49 @@
 
     <!-- ============ Email and Password ============ -->
     <form class="form" id="auth" @submit.prevent>
-      <div class="form-group">
-        <label for="email" class="hidden">Email:</label>
-        <input v-model="form.email"
-          type="email"
-          name="email"
+      <div class="form-error">{{ error.form }}</div>
+      <CFormGroup
+        :state="stateEmail"
+        :invalidFeedback="invalidFeedbackEmail"
+      >
+        <CFormInput
           autocomplete="email"
-          required
-          placeholder="Email"
+          name="email"
+          :hiddenLabel="true"
+          id="email"
+          label="Email"
+          placeholder="Email address"
+          type="email"
+          v-model="form.email"
         />
-      </div>
+      </CFormGroup>
 
-      <div class="form-group">
-        <label for="password" class="hidden">Password:</label>
-        <input v-model="form.password"
-          pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}"
-          type="password"
-          id="password"
-          name="password"
-          required
+      <CFormGroup
+        :state="statePassword"
+        :invalidFeedback="invalidFeedbackPassword"
+      >
+        <CFormInput
           autocomplete="password"
-          placeholder="Password">
-      </div>
-      <div class="form-group">
-        <CButton class="btn-teal" type="button" @click="login" ref="loginBtn">
+          name="password"
+          :hiddenLabel="true"
+          id="password"
+          label="Password"
+          placeholder="Password"
+          type="password"
+          v-model="form.password"
+        />
+      </CFormGroup>
+
+      <CFormGroup>
+        <CButton class="btn-teal" type="button" @click="handleLogin" ref="btnLogin">
           Login
         </CButton>
-      </div>
-      <div class="form-group">
-        <button class="btn-red" type="button" @click="register" ref="registerBtn">
+      </CFormGroup>
+      <CFormGroup>
+        <CButton class="btn-red" type="button" @click="handleRegister" ref="btnRegister">
           Sign up
-        </button>
-      </div>
+        </CButton>
+      </CFormGroup>
     </form>
     <!-- ============ EOF Email and Password ============ -->
 
@@ -43,18 +54,20 @@
     <div class="spacer spacer-lg">OR</div>
 
     <!-- ============ Social Media ============ -->
-    <div class="flex-item">
+    <div class="social-media">
       <p>Login in with your social accounts.</p>
       <div class="spacer"></div>
-      <button class="btn-circle btn-google">
-        <i class="fab fa-google"></i>
-      </button>
-      <button class="btn-circle btn-facebook">
-        <i class="fab fa-facebook-f"></i>
-      </button>
-      <button class="btn-circle btn-twitter">
-        <i class="fab fa-twitter"></i>
-      </button>
+      <div class="list">
+        <button class="btn-circle btn-google">
+          <i class="fab fa-google"></i>
+        </button>
+        <button class="btn-circle btn-facebook">
+          <i class="fab fa-facebook-f"></i>
+        </button>
+        <button class="btn-circle btn-twitter">
+          <i class="fab fa-twitter"></i>
+        </button>
+      </div>
     </div>
     <!-- ============ EOF Social Media ============ -->
   </div>
@@ -62,51 +75,73 @@
 
 <script lang="ts">
 import store from '@/store/modules/writer';
-import { defineComponent, reactive, ref } from 'vue';
+import { defineComponent, onMounted, ref } from 'vue';
 import CButton from '@/components/widgets/CButton.vue';
+import CFormGroup from '@/components/widgets/CFormGroup.vue';
+import CFormInput from '@/components/widgets/CFormInput.vue';
+import AuthForm from './auth-form';
 
 export default defineComponent({
   components: {
     CButton,
+    CFormGroup,
+    CFormInput,
   },
   setup() {
-    const form = reactive({
-      email: '',
-      password: '',
-    });
-    const loginBtn = ref();
-    const registerBtn = ref();
+    const {
+      error,
+      form,
+      invalidFeedbackEmail,
+      invalidFeedbackPassword,
+      resetForm,
+      stateEmail,
+      statePassword,
+    } = AuthForm;
 
-    const login = async () => {
-      if (loginBtn.value.state.loading) { return; }
-      loginBtn.value.setLoading(true);
+    onMounted(() => resetForm());
+
+    // ============ Login ============
+    const btnLogin = ref();
+    const handleLogin = async () => {
+      if (btnLogin.value.state.loading) return;
+      if (!stateEmail.value || !statePassword.value) return;
+      btnLogin.value.setLoading(true);
 
       try {
         await store.dispatch('login', form);
       } catch (e) {
-        // TODO Handle
-        loginBtn.value.setLoading(false);
+        btnLogin.value.setLoading(false);
+        error.form = e.message;
       }
     };
 
-    const register = async () => {
-      if (registerBtn.value.state.loading) { return; }
-      registerBtn.value.setLoading(true);
+    // ============ Register ============
+    const btnRegister = ref();
+    const handleRegister = async () => {
+      if (btnRegister.value.state.loading) return;
+      if (!stateEmail.value || !statePassword.value) return;
+
+      btnRegister.value.setLoading(true);
 
       try {
         await store.dispatch('register', form);
       } catch (e) {
-        // TODO Handle
-        registerBtn.value.setLoading(false);
+        btnRegister.value.setLoading(false);
+        error.form = e.message;
       }
     };
 
     return {
+      error,
       form,
-      login,
-      loginBtn,
-      registerBtn,
-      register,
+      btnLogin,
+      btnRegister,
+      handleLogin,
+      handleRegister,
+      invalidFeedbackEmail,
+      invalidFeedbackPassword,
+      stateEmail,
+      statePassword,
     };
   },
 });
@@ -138,5 +173,13 @@ form {
   text-align: left;
   width: 100%;
   max-width: 20rem;
+}
+
+.social-media {
+  .list {
+    display: grid;
+    place-items: center;
+    grid-template-columns: 1fr 1fr 1fr;
+  }
 }
 </style>

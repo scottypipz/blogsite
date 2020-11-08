@@ -2,53 +2,16 @@
   input[type="text"],
   input[type="email"],
   input[type="password"] {
+    font-family: inherit;
     // show success!
-    &:valid {
-      background: url(/img/svg/check.svg);
-      background-size: 20px;
-      background-repeat: no-repeat;
-      background-position: 20px 20px;
-    }
-  }
-  .form-group {
-    margin: 0.5rem 0;
-    position: relative;
-    input, text-area {
-      border: $grey3;
-      border-radius: 1rem;
-      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.10);
-      font-size: 1rem;
-      padding: 0.5rem 1rem;
-      width: 100%;
-    }
-    button {
-      border: none;
-      border-radius: 1rem;
-      box-shadow: 0 2px 3px rgba(0, 0, 0, 0.15);
-      font-size: 1rem;
-      padding: 0.5rem 1rem;
-      width: 100%;
-      &[type="submit"] {
-        background-color: $teal;
-        color: $font-white-primary;
-      }
-      &.btn-teal {
-        background-color: $teal;
-        color: $font-white-primary;
-      }
-      &.btn-red {
-        background-color: $red;
-        color: $font-white-primary;
-      }
-    }
-  }
-  label {
-    &.hidden {
-      visibility: hidden;
-      position: absolute;
-    }
   }
 
+  .form-error {
+    text-align: center;
+    color: $red;
+    padding-bottom: 1rem;
+    display: inline-block;
+  }
 }
 
 /* Change Autocomplete styles in Chrome*/

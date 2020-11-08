@@ -29,23 +29,24 @@ const store = createStore({
         await auth.signInWithEmailAndPassword(form.email, form.password);
         commit('setIsLoggedIn', true);
 
-        return router.push({ name: 'WriterHome' });
+        return router.replace({ name: 'WriterHome' });
       } catch (e) {
         commit('setIsLoggedIn', false);
 
         return Promise.reject(new Error('Invalid credentials.'));
       }
     },
-    async register(state, form: AuthForm) {
+    async register({ commit }, form: AuthForm) {
       try {
-        const response = await auth.createUserWithEmailAndPassword(form.email, form.password);
+        await auth.createUserWithEmailAndPassword(form.email, form.password);
+        commit('setIsLoggedIn', true);
 
-        return Promise.resolve(response);
+        return router.replace({ name: 'WriterHome' });
       } catch (e) {
         const errorCode = e.code;
         const errorMessage = e.message;
         if (errorCode === 'auth/weak-password') {
-          return Promise.reject(new Error('Invalid credentials.'));
+          return Promise.reject(new Error('Password is weak.'));
         }
 
         return Promise.reject(new Error(errorMessage));
