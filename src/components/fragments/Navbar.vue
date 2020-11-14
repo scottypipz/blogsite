@@ -1,21 +1,44 @@
 <template>
   <nav>
     <div class="container no-select">
-      <router-link to="/">Home</router-link>
+      <router-link to="/">Blogsite</router-link>
 
       <!-- ============ Guest Routes ============ -->
-      <router-link to="/writer">Be a Writer</router-link>
+      <template v-if="!isLoggedIn">
+        <router-link :to="{ name: 'WriterAuth' }">Be a Writer</router-link>
+      </template>
 
       <!-- ============ Private Routes ============ -->
-      <router-link to="/profile" class="profile">
-        <div class="name web-only">
-          John Doe
+      <template v-if="isLoggedIn">
+        <router-link :to="{ name: 'WriterHome' }">Home</router-link>
+        <div class="profile">
+          <div class="name web-only">
+            John Doe
+          </div>
+          <div class="profile-pic" @click="logout"></div>
         </div>
-        <div class="profile-pic"></div>
-      </router-link>
+      </template>
     </div>
   </nav>
 </template>
+
+<script lang="ts">
+import store from '@/store/modules/writer';
+import { computed, defineComponent } from 'vue';
+
+export default defineComponent({
+  setup() {
+    const isLoggedIn = computed(() => store.state.isLoggedIn);
+
+    const logout = () => store.dispatch('logout');
+
+    return {
+      isLoggedIn,
+      logout,
+    };
+  },
+});
+</script>
 
 <style lang="scss" scoped>
 @import '../../assets/scss/_variables.scss';
@@ -24,6 +47,8 @@ nav {
   top: 0;
   left: 0;
   width: 100%;
+  z-index: 1000;
+  font-size: 1rem;
 
   .container {
     width: 800px;
@@ -57,7 +82,7 @@ nav {
       width: 2rem;
       height: 2rem;
       border-radius: 50%;
-      background-color: $google-light-secondary;
+      background-color: $google-light-primary;
     }
   }
 }

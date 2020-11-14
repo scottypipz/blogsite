@@ -1,6 +1,10 @@
+import * as NProgress from 'nprogress';
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router';
 import Home from '../views/Home.vue';
 import writerRoutes from './writers';
+import 'nprogress/nprogress.css';
+
+NProgress.configure({ showSpinner: false });
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -8,20 +12,26 @@ const routes: Array<RouteRecordRaw> = [
     name: 'Home',
     component: Home,
   },
-  {
-    path: '/about',
-    name: 'About',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/About.vue'),
-  },
   ...writerRoutes,
 ];
 
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes,
+});
+
+router.beforeResolve((to, from, next) => {
+  // If this isn't an initial page load.
+  if (to.name) {
+    // Start the route progress bar.
+    NProgress.start();
+  }
+  next();
+});
+
+router.afterEach(() => {
+  // Complete the animation of the route progress bar.
+  NProgress.done();
 });
 
 export default router;

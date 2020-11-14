@@ -1,5 +1,5 @@
 <template>
-  <footer>
+  <footer v-if="$route.meta.withFooter !== false">
     <div class="container">
       <div class="item">
         <label for="about-us">About Us</label>
@@ -18,7 +18,7 @@
 @import '../../assets/scss/_variables.scss';
 footer {
   padding: 2rem 0;
-  background-color: $google-light-primary;
+  background-color: #77777733;
   .container {
     width: 800px;
     max-width: 100%;

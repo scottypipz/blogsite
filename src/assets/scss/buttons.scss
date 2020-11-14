@@ -1,0 +1,111 @@
+button {
+  padding: 0.5rem 1rem;
+  outline: none;
+  border-radius: 3px;
+  box-shadow: 0 1px 10px rgba(0, 0, 0, 0.10);
+  font-family: inherit;
+  cursor: pointer;
+
+  &:disabled {
+    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #3093c7), color-stop(100%, #1c5a85));
+    background-image: -webkit-linear-gradient(top, #3093c7, #1c5a85);
+    background-image: -moz-linear-gradient(top, #3093c7, #1c5a85);
+    background-image: -ms-linear-gradient(top, #3093c7, #1c5a85);
+    background-image: -o-linear-gradient(top, #3093c7, #1c5a85);
+  }
+
+  &.form-control {
+    border-radius: 0.5rem;
+    padding: 0.5rem 1rem;
+    text-align: center;
+    width: 100%;
+
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.10);
+    font-size: 1rem;
+    &:disabled {
+      opacity: 0.5;
+    }
+  }
+
+  &.btn-circle {
+    font-size: 1.5rem;
+    width: 4rem;
+    height: 4rem;
+    line-height: 1rem;
+    border-radius: 50%;
+  }
+
+  &.btn-facebook {
+    color: $font-white-primary;
+    background-color: $blue;
+    border: none;
+  }
+
+  &.btn-google {
+    color: $font-white-primary;
+    background-color: $red;
+    border: none;
+  }
+
+  &.btn-red {
+    color: $font-white-primary;
+    background-color: $red;
+    border: none;
+  }
+
+  &.btn-github {
+    color: $font-white-primary;
+    background-color: #333;
+    border: none;
+  }
+
+  &.btn-twitter {
+    color: $font-white-primary;
+    background-color: $teal;
+    border: none;
+  }
+
+  &.btn-sky {
+    color: $font-white-primary;
+    background-color: $sky;
+    border: none;
+  }
+
+  &.btn-teal {
+    color: $font-white-primary;
+    background-color: $teal;
+    border: none;
+  }
+
+  &.btn-lg {
+    font-size: 1.5rem;
+  }
+
+  &:active {
+    z-index: 2;
+  }
+}
+
+.btn-group {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  button {
+    flex: 1;
+    font-size: 1rem;
+    padding: 0.5rem 1rem;
+    text-align: center;
+    box-shadow: 0 1px 10px rgba(0, 0, 0, 0.25);
+    &:first-child {
+      border-radius: unset;
+      border-bottom-left-radius: 1rem;
+      border-top-left-radius: 1rem;
+    }
+    &:last-child {
+      border-radius: unset;
+      border-bottom-right-radius: 1rem;
+      border-top-right-radius: 1rem;
+    }
+  }
+}
