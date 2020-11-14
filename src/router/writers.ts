@@ -7,6 +7,9 @@ const routes: Array<RouteRecordRaw> = [
     path: '/writers/authentication',
     name: 'WriterAuth',
     component: () => import('@/views/writers/Auth.vue'),
+    meta: {
+      withFooter: false,
+    },
     beforeEnter(to, from, next) {
       try {
         if (auth.currentUser) {

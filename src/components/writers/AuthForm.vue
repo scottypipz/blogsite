@@ -2,29 +2,24 @@
   <div class="container">
     <div class="title">What's your story?</div>
 
-    <!-- ============ Email and Password ============ -->
+    <!-- ============ email_and_password ============ -->
     <form class="form" id="auth" @submit.prevent>
       <div class="form-error">{{ error.form }}</div>
-      <CFormGroup
-        :state="stateEmail"
-        :invalidFeedback="invalidFeedbackEmail"
-      >
+
+      <div class="input-group mb-3">
         <CFormInput
           autocomplete="email"
+          :autofocus="true"
           name="email"
           :hiddenLabel="true"
           id="email"
           label="Email"
-          placeholder="Email address"
+          placeholder="Email"
+          :state="stateEmail"
+          :invalidFeedback="invalidFeedbackEmail"
           type="email"
           v-model="form.email"
         />
-      </CFormGroup>
-
-      <CFormGroup
-        :state="statePassword"
-        :invalidFeedback="invalidFeedbackPassword"
-      >
         <CFormInput
           autocomplete="password"
           name="password"
@@ -32,28 +27,37 @@
           id="password"
           label="Password"
           placeholder="Password"
+          :state="statePassword"
+          :invalidFeedback="invalidFeedbackPassword"
           type="password"
           v-model="form.password"
         />
-      </CFormGroup>
+      </div>
 
-      <CFormGroup>
-        <CButton class="btn-teal" type="button" @click="handleLogin" ref="btnLogin">
-          Login
-        </CButton>
-      </CFormGroup>
-      <CFormGroup>
-        <CButton class="btn-red" type="button" @click="handleRegister" ref="btnRegister">
-          Sign up
-        </CButton>
-      </CFormGroup>
+      <CButton
+        class="btn-teal form-control mb-2"
+        :disabled="!stateEmail || !statePassword"
+        ref="btnLogin"
+        type="submit"
+        @click="handleLogin"
+      >
+        Login
+      </CButton>
+      <CButton
+        class="btn-red form-control"
+        ref="btnRegister"
+        type="button"
+        @click="handleRegister"
+      >
+        Sign Up
+      </CButton>
     </form>
-    <!-- ============ EOF Email and Password ============ -->
+    <!-- ============ EOF email_and_password ============ -->
 
-    <!-- ============ Divider ============ -->
+    <!-- ============ divider ============ -->
     <div class="spacer spacer-lg">OR</div>
 
-    <!-- ============ Social Media ============ -->
+    <!-- ============ social_media ============ -->
     <div class="social-media">
       <p>Login in with your social accounts.</p>
       <div class="spacer"></div>
@@ -69,23 +73,23 @@
         </button>
       </div>
     </div>
-    <!-- ============ EOF Social Media ============ -->
+    <!-- ============ EOF social_media ============ -->
+    <Teleport to="body"><CModalLoading ref="modalLoading"></CModalLoading></Teleport>
   </div>
 </template>
 
 <script lang="ts">
-import store from '@/store/modules/writer';
 import { defineComponent, onMounted, ref } from 'vue';
 import CButton from '@/components/widgets/CButton.vue';
-import CFormGroup from '@/components/widgets/CFormGroup.vue';
 import CFormInput from '@/components/widgets/CFormInput.vue';
+import CModalLoading from '@/components/widgets/CModalLoading.vue';
 import AuthForm from './auth-form';
 
 export default defineComponent({
   components: {
     CButton,
-    CFormGroup,
     CFormInput,
+    CModalLoading,
   },
   setup() {
     const {
@@ -98,37 +102,45 @@ export default defineComponent({
       statePassword,
     } = AuthForm;
 
+    const modalLoading = ref();
+
     onMounted(() => resetForm());
 
     // ============ Login ============
     const btnLogin = ref();
     const handleLogin = async () => {
-      if (btnLogin.value.state.loading) return;
       if (!stateEmail.value || !statePassword.value) return;
-      btnLogin.value.setLoading(true);
 
-      try {
-        await store.dispatch('login', form);
-      } catch (e) {
-        btnLogin.value.setLoading(false);
-        error.form = e.message;
-      }
+      modalLoading.value.setIsLoading(true);
+      setTimeout(() => {
+        // modalLoading.value.setIsLoading(false);
+      }, 5000);
+      // btnLogin.value.setLoading(true);
+
+      // try {
+      //   await store.dispatch('login', form);
+      // } catch (e) {
+      //   btnLogin.value.setLoading(false);
+      //   error.form = e.message;
+      // }
     };
 
     // ============ Register ============
     const btnRegister = ref();
     const handleRegister = async () => {
-      if (btnRegister.value.state.loading) return;
-      if (!stateEmail.value || !statePassword.value) return;
+      // if (!stateEmail.value || !statePassword.value) return;
 
-      btnRegister.value.setLoading(true);
+      modalLoading.value.setIsLoading(true);
+      setTimeout(() => {
+        modalLoading.value.setIsLoading(false);
+      }, 2000);
 
-      try {
-        await store.dispatch('register', form);
-      } catch (e) {
-        btnRegister.value.setLoading(false);
-        error.form = e.message;
-      }
+      // try {
+      //   await store.dispatch('register', form);
+      // } catch (e) {
+      //   btnRegister.value.setLoading(false);
+      //   error.form = e.message;
+      // }
     };
 
     return {
@@ -140,6 +152,7 @@ export default defineComponent({
       handleRegister,
       invalidFeedbackEmail,
       invalidFeedbackPassword,
+      modalLoading,
       stateEmail,
       statePassword,
     };

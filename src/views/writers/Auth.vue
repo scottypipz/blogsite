@@ -3,7 +3,7 @@
     <div class="background">
       <div class="overlay"></div>
     </div>
-    <AuthForm/>
+    <AuthForm />
   </div>
 </template>
 

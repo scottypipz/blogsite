@@ -7,8 +7,12 @@
   >
     <slot></slot>
     <i class="valid-icon fas fa-check-circle"></i>
-    <i class="error-icon fas fa-exclamation-circle"></i>
-    <small class="error">{{ state === false ? invalidFeedback() : '' }}</small>
+    <span
+      class="error"
+      :data-text="state === false ? invalidFeedback() : ''"
+    >
+      <i class="error-icon fas fa-exclamation-circle"></i>
+    </span>
   </div>
 </template>
 
@@ -45,6 +49,7 @@ export default defineComponent({
   &.error {
     input {
       border-color: $red;
+      box-shadow: 0 0 3px $red;
     }
     i.error-icon {
       color: $red;
@@ -55,32 +60,33 @@ export default defineComponent({
       visibility: visible;
     }
   }
-  label {
-    &.hidden {
-      visibility: hidden;
-      position: absolute;
-    }
-  }
-  input, text-area {
-    border: 1px solid rgba(0, 0, 0, 0.10);
-    border-radius: 1rem;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
-    font-size: 1rem;
-    padding: 0.5rem 1rem;
-    width: 100%;
-    display: block;
-  }
-  i.valid-icon,
-  i.error-icon {
+  i.valid-icon {
     position: absolute;
     right: 1rem;
     top: 0.6rem;
     visibility: hidden;
   }
-  small.error {
-    display: block;
-    padding: 0.25rem 0 0.25rem 1rem;
+  span.error {
+    position: absolute;
+    right: 1rem;
+    top: 0.6rem;
     visibility: hidden;
+    &:before {
+      content: attr(data-text);
+      position: absolute;
+      right: 0;
+      top: -6rem;
+
+      padding: 0.5rem;
+      background: $red;
+      color:#fff;
+      text-align: center;
+
+      display: none; /* hide by default */
+    }
+    &:hover:before {
+      display: block;
+    }
   }
   button {
     border: none !important;

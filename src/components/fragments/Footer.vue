@@ -1,5 +1,5 @@
 <template>
-  <footer>
+  <footer v-if="$route.meta.withFooter !== false">
     <div class="container">
       <div class="item">
         <label for="about-us">About Us</label>
