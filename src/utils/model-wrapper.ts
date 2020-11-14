@@ -1,6 +1,6 @@
 import { computed } from 'vue';
 
-function useModelWrapper(props: any, emit: (event: string, ...args: any[]) => void, name = 'modelValue') {
+function useModelWrapper(props: never, emit: (event: string, ...args: never[]) => void, name = 'modelValue') {
   return computed({
     get: () => props[name],
     set: (value) => emit(`update:${name}`, value),

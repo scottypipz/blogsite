@@ -1,11 +1,18 @@
 <template>
   <Teleport to="body">
-    <div class="modal" v-if="state.isMounted">
-      <div class="modal-wrapper"></div>
-      <div class="modal-content" role="alert">
-        <slot></slot>
+    <transition name="fade">
+      <div class="modal-wrapper" v-if="state.isMounted" @click="setIsMounted(false)"></div>
+    </transition>
+    <transition name="pop">
+      <div class="modal no-select" v-if="state.isMounted">
+        <h3 class="modal-header mb-2">
+          <slot name="header"></slot>
+        </h3>
+        <div class="modal-body">
+          <slot></slot>
+        </div>
       </div>
-    </div>
+    </transition>
   </Teleport>
 </template>
 

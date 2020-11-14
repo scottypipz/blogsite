@@ -4,8 +4,6 @@
 
     <!-- ============ email_and_password ============ -->
     <form class="form" id="auth" @submit.prevent>
-      <div class="form-error">{{ error.form }}</div>
-
       <div class="input-group mb-3">
         <CFormInput
           autocomplete="email"
@@ -28,7 +26,6 @@
           label="Password"
           placeholder="Password"
           :state="statePassword"
-          :invalidFeedback="invalidFeedbackPassword"
           type="password"
           v-model="form.password"
         />
@@ -62,99 +59,47 @@
       <p>Login in with your social accounts.</p>
       <div class="spacer"></div>
       <div class="list">
-        <button class="btn-circle btn-google">
+        <button class="btn-circle btn-google" @click="handleGoogleLogin">
           <i class="fab fa-google"></i>
         </button>
-        <button class="btn-circle btn-facebook">
+        <button class="btn-circle btn-facebook" @click="handleFacebookLogin">
           <i class="fab fa-facebook-f"></i>
         </button>
-        <button class="btn-circle btn-twitter">
-          <i class="fab fa-twitter"></i>
+        <button class="btn-circle btn-github" @click="handleGithubLogin">
+          <i class="fab fa-github"></i>
         </button>
       </div>
     </div>
     <!-- ============ EOF social_media ============ -->
+
+    <!-- ============ Modals ============ -->
     <Teleport to="body"><CModalLoading ref="modalLoading"></CModalLoading></Teleport>
+    <Teleport to="body"><CModalAlert ref="modalAlert"></CModalAlert></Teleport>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, onMounted, ref } from 'vue';
+import { defineComponent, onMounted } from 'vue';
 import CButton from '@/components/widgets/CButton.vue';
 import CFormInput from '@/components/widgets/CFormInput.vue';
+import CModalAlert from '@/components/widgets/CModalAlert.vue';
 import CModalLoading from '@/components/widgets/CModalLoading.vue';
-import AuthForm from './auth-form';
+import useEmailAndPasswordForm from './compositions/useEmailAndPasswordForm';
+import useOAuth from './compositions/useOAuth';
 
 export default defineComponent({
   components: {
     CButton,
     CFormInput,
+    CModalAlert,
     CModalLoading,
   },
   setup() {
-    const {
-      error,
-      form,
-      invalidFeedbackEmail,
-      invalidFeedbackPassword,
-      resetForm,
-      stateEmail,
-      statePassword,
-    } = AuthForm;
-
-    const modalLoading = ref();
-
-    onMounted(() => resetForm());
-
-    // ============ Login ============
-    const btnLogin = ref();
-    const handleLogin = async () => {
-      if (!stateEmail.value || !statePassword.value) return;
-
-      modalLoading.value.setIsLoading(true);
-      setTimeout(() => {
-        // modalLoading.value.setIsLoading(false);
-      }, 5000);
-      // btnLogin.value.setLoading(true);
-
-      // try {
-      //   await store.dispatch('login', form);
-      // } catch (e) {
-      //   btnLogin.value.setLoading(false);
-      //   error.form = e.message;
-      // }
-    };
-
-    // ============ Register ============
-    const btnRegister = ref();
-    const handleRegister = async () => {
-      // if (!stateEmail.value || !statePassword.value) return;
-
-      modalLoading.value.setIsLoading(true);
-      setTimeout(() => {
-        modalLoading.value.setIsLoading(false);
-      }, 2000);
-
-      // try {
-      //   await store.dispatch('register', form);
-      // } catch (e) {
-      //   btnRegister.value.setLoading(false);
-      //   error.form = e.message;
-      // }
-    };
+    onMounted(() => useEmailAndPasswordForm.resetForm());
 
     return {
-      error,
-      form,
-      btnLogin,
-      btnRegister,
-      handleLogin,
-      handleRegister,
-      invalidFeedbackEmail,
-      invalidFeedbackPassword,
-      modalLoading,
-      stateEmail,
-      statePassword,
+      ...useOAuth,
+      ...useEmailAndPasswordForm,
     };
   },
 });

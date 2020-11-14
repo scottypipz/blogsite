@@ -15,13 +15,6 @@ const routes: Array<RouteRecordRaw> = [
         });
       }
     },
-    children: [
-      {
-        path: '/login',
-        name: 'AdminLogin',
-        component: () => import('../views/writers/Login.vue'),
-      },
-    ],
   },
 ];
 

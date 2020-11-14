@@ -53,6 +53,12 @@ button {
     border: none;
   }
 
+  &.btn-github {
+    color: $font-white-primary;
+    background-color: #333;
+    border: none;
+  }
+
   &.btn-twitter {
     color: $font-white-primary;
     background-color: $teal;

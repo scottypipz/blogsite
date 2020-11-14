@@ -4,7 +4,7 @@
       <div class="modal-wrapper" v-if="state.isLoading"></div>
     </transition>
     <transition name="pop">
-      <div class="modal no-select" v-if="state.isLoading">
+      <div class="modal p-2 no-select" v-if="state.isLoading">
         <div class="loader">Loading...</div>
         <p class="pt-2">Loading...</p>
       </div>

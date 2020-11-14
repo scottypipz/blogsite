@@ -17,5 +17,6 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 
 const auth = firebase.auth();
+auth.useDeviceLanguage();
 
 export default auth;

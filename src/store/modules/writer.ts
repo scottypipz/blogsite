@@ -1,6 +1,8 @@
 import { createStore } from 'vuex';
+import firebase from 'firebase';
 import auth from '@/api/firebase.api';
 import router from '@/router';
+import Cookies from 'js-cookie';
 
 export interface AuthForm {
   email: string;
@@ -8,19 +10,30 @@ export interface AuthForm {
 }
 
 interface State {
+  accessToken: string;
   isLoggedIn: boolean;
+  user: object;
 }
 
 const store = createStore({
   state(): State {
     return {
+      accessToken: Cookies.get('accessToken') || '',
       isLoggedIn: localStorage.getItem('blogsite/isLoggedIn') === 'true',
+      user: {},
     };
   },
   mutations: {
     setIsLoggedIn(state: State, payload) {
       state.isLoggedIn = payload;
       localStorage.setItem('blogsite/isLoggedIn', payload);
+    },
+    setAccessToken(state: State, payload) {
+      Cookies.set('accessToken', payload);
+      state.accessToken = payload;
+    },
+    setUser(state: State, payload) {
+      state.user = payload;
     },
   },
   actions: {
@@ -34,6 +47,26 @@ const store = createStore({
         commit('setIsLoggedIn', false);
 
         return Promise.reject(new Error('Invalid credentials.'));
+      }
+    },
+    async oauthLogin({ commit }, provider) {
+      try {
+        console.log('test');
+        const result = await auth.signInWithPopup(provider);
+        console.log('test');
+        console.log(result);
+        if (result.credential) {
+          const credential = result.credential as firebase.auth.OAuthCredential;
+          commit('setAccessToken', credential.accessToken);
+        }
+        commit('setUser', result.user);
+        commit('setIsLoggedIn', true);
+
+        return router.replace({ name: 'WriterHome' });
+      } catch (e) {
+        commit('setIsLoggedIn', false);
+
+        return Promise.reject(e);
       }
     },
     async register({ commit }, form: AuthForm) {
