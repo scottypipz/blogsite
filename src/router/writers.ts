@@ -24,8 +24,6 @@ const routes: Array<RouteRecordRaw> = [
       }
     },
   },
-
-  // Private routes
   {
     path: '/writers',
     name: 'WriterHome',
@@ -51,6 +49,30 @@ const routes: Array<RouteRecordRaw> = [
       },
     ],
   },
+
+  // Private routes
+  // {
+  //   path: '/writers/:username',
+  //   name: 'WriterHome',
+  //   component: () => import('../views/writers/Home.vue'),
+  //   beforeEnter(to, from, next) {
+  //     try {
+  //       next();
+  //     } catch (e) {
+  //       next({
+  //         name: 'WriterLogin',
+  //         query: { redirectFrom: to.fullPath },
+  //       });
+  //     }
+  //   },
+  //   children: [
+  //     {
+  //       path: '/articles/create',
+  //       name: 'WriterArticleCreate',
+  //       component: () => import('../views/writers/articles/Create.vue'),
+  //     },
+  //   ],
+  // },
 ];
 
 export default routes;
