@@ -19,7 +19,6 @@
   transform: translate(-50%, -50%);
   z-index: 999;
   margin: auto;
-  padding: 1rem 1.5rem;
 
   height: fit-content;
   width: fit-content;
@@ -30,6 +29,12 @@
   border-radius: 1rem;
 
   background-color: #fff;
+  .modal-header {
+    padding: 1rem 1.5rem 0.5rem;
+  }
+  .modal-body {
+    padding: 1rem 1.5rem;
+  }
 }
 
 /** ============ Transition effects ============ */

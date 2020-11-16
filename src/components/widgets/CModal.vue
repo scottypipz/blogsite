@@ -5,7 +5,7 @@
     </transition>
     <transition name="pop">
       <div class="modal no-select" v-if="state.isMounted">
-        <h3 class="modal-header mb-2">
+        <h3 class="modal-header">
           <slot name="header"></slot>
         </h3>
         <div class="modal-body">

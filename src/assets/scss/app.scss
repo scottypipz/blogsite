@@ -23,6 +23,8 @@ body {
 input, button, submit {
   border:none;
   outline: none;
+  appearance: none;
+  border-radius: 0;
 } 
 
 main {
