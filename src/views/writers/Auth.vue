@@ -38,5 +38,10 @@ export default defineComponent({
     width: 100%;
     background-color: rgba(255, 255, 255, 0.85);
   }
+
+  /** Web */
+  @media screen and (min-width: 1024px) {
+    background-image: url('../../assets/img/writers/registration-background.jpg');
+  }
 }
 </style>

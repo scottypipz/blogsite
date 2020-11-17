@@ -42,6 +42,7 @@
       </CButton>
       <CButton
         class="btn-red form-control"
+        :disabled="!stateEmail || !statePassword"
         ref="btnRegister"
         type="button"
         @click="handleRegister"
