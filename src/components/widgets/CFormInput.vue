@@ -84,6 +84,7 @@ label {
 .form-input {
   position: relative;
   input {
+    background-color: #fff;
     border: 1px solid rgba(0, 0, 0, 0.10);
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
     font-size: 1rem;

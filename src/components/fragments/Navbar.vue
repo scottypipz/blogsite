@@ -51,7 +51,7 @@ nav {
   font-size: 1rem;
 
   .container {
-    width: 800px;
+    width: $body-max-width;
     max-width: 100%;
     margin: 0 auto;
     padding: 1rem;

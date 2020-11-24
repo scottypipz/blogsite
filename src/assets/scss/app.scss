@@ -42,6 +42,12 @@ a, u {
   text-decoration: none;
 }
 
+input {
+  font-family: inherit;
+  color: inherit;
+  background: inherit;
+}
+
 .no-select {
   -webkit-touch-callout: none; /* iOS Safari */
     -webkit-user-select: none; /* Safari */
@@ -106,7 +112,8 @@ a, u {
   }
 }
 
-@import './buttons.scss';
-@import './util.scss';
-@import './modal.scss';
-@import './form.scss';
+@import 'buttons';
+@import 'util';
+@import 'modal';
+@import 'form';
+@import 'main';

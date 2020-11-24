@@ -108,7 +108,6 @@ export default defineComponent({
 
 <style lang="scss" scoped>
 @import url(https://fonts.googleapis.com/css?family=Cookie);
-@import '@/assets/scss/form.scss';
 
 .container {
   display: flex;

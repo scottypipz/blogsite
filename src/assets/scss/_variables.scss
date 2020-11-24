@@ -6,6 +6,8 @@ $font-family-sans-serif: 'Nunito', sans-serif;
 $font-size-base: 0.9rem;
 $line-height-base: 1.6;
 
+$body-max-width: 100%;
+
 // Colors
 $blue: #4267B2;
 $indigo: #6574cd;
@@ -20,8 +22,9 @@ $sky: #87ceeb;
 $dark-grey: #333;
 $grey3: #828282;
 $font-dark-primary: rgba(0, 0, 0, 0.87);
-$font-dark-secondary: rgba(0, 0, 0, 0.54);
+$font-dark-secondary: rgba(0, 0, 0, 0.74);
 $font-white-primary: #FFFFFF;
+$font-white-secondary: #eeeeee;
 $google-light-primary: #e0e0e0;
 $google-light-secondary: #eeeeee;
 $google-light-light: #fafafa;
